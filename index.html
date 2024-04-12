@@ -54,17 +54,31 @@
 
         <script>
             let Val = true;
-            function Toggle() {
-                if (!Val) {
-                    document.body.style.backgroundColor = "white";
-                    document.getElementById('glass').style.fill = "#F4BB2C";
-                    document.getElementById('rays').style.opacity = 1;
-                    Val = true;
-                } else {
+            let LampBroken = false;
+            let Clicks = 0;
+            setInterval(function () { Clicks = 0 }, 2000);
+            async function Toggle() {
+                Clicks++;
+                if (Clicks == 8) {
                     document.body.style.backgroundColor = "black";
                     document.getElementById('glass').style.fill = "#5C546A";
                     document.getElementById('rays').style.opacity = 0;
-                    Val = false;
+                    alert("The lightbulb broke");
+                    LampBroken = true;
+                } else if (!LampBroken) {
+                    if (!Val) {
+                        document.body.style.backgroundColor = "white";
+                        document.getElementById('glass').style.fill = "#F4BB2C";
+                        document.getElementById('rays').style.opacity = 1;
+                        Val = true;
+                    } else {
+                        document.body.style.backgroundColor = "black";
+                        document.getElementById('glass').style.fill = "#5C546A";
+                        document.getElementById('rays').style.opacity = 0;
+                        Val = false;
+                    }
+                } else {
+                    alert("You broke the lightbulb :(");
                 }
             }
         </script>
